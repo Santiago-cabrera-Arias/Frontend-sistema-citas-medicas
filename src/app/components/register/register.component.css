@@ -1,0 +1,32 @@
+.container_registro {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    width: 500px;
+  }
+  
+  .form_register {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .button-container button {
+    width: 100%;
+  }
+  
+  .container_register_main {
+    padding: 86px;
+    background: #4b6cb7;
+    background: -webkit-linear-gradient(to left, #182848, #4b6cb7);
+    background: linear-gradient(to left, #182848, #4b6cb7);
+  }
