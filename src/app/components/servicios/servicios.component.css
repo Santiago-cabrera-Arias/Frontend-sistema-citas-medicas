@@ -1,6 +1,6 @@
 
 .container_background{
-    padding: 90px;
+    padding: 40px;
     background: #C9D6FF;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to top, #C9D6FF, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to top, #f2fcfe, #f2fcfe); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */

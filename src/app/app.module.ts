@@ -9,6 +9,9 @@ import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { AboutComponent } from './components/about/about.component';
 import { ServiciosComponent } from './components/servicios/servicios.component';
+import { CrearServicioComponent } from './components/crear-servicio/crear-servicio.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -19,11 +22,14 @@ import { ServiciosComponent } from './components/servicios/servicios.component';
     LoginComponent,
     MainComponent,
     AboutComponent,
-    ServiciosComponent
+    ServiciosComponent,
+    CrearServicioComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
