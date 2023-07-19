@@ -21,7 +21,6 @@ export class CrearServicioComponent {
   constructor(private servicios: ServiciosService, private router: Router) { }
 
   form_register(){
-
       this.servicios.crearServicio(this.servicio).subscribe(
         (data) => {
           console.log(data);  
@@ -30,7 +29,6 @@ export class CrearServicioComponent {
         },(error) => {  
           console.log(error);
         })
-    
   }
 
 
