@@ -10,8 +10,8 @@ export class ServicioLoginService {
   constructor(private httpClient: HttpClient) { }
 
 
-  public crearPersona(persona: any){
-    return this.httpClient.post("http://localhost:8068/personas/registrar",persona);
+  public login(usuario: any){
+    return this.httpClient.post("http://localhost:8068/usuarios/login",usuario);
   }
 
   

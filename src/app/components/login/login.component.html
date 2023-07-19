@@ -14,11 +14,11 @@
   
       <br>
   
-      <form class="form_register">
+      <form  (ngSubmit) = "form_login()">
   
         <div class="form-group">
-          <label class="form-label">Correo</label>
-          <input class="form-control" type="email">
+          <label class="form-label">Usuario</label>
+          <input class="form-control" type="text">
         </div>
   
         <div class="form-group">
@@ -29,7 +29,7 @@
         <br>
   
         <div class="button-container">
-          <button class="btn btn-primary" type="button">Iniciar Sesión</button>
+          <button class="btn btn-primary">Iniciar Sesión</button>
         </div>
       </form>
       <br>
