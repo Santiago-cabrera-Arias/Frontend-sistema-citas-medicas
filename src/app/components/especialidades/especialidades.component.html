@@ -1,0 +1,46 @@
+<div class="container_login_main">
+    
+    <!-- Formulario para registrar especialidades -->
+    <div class="container container_registro">
+      <form (ngSubmit)="form_register()">
+        <section class="section_title">
+            <h3 style="display: flex; justify-content: space-between;">Crear Especialidad <a href="#" class="navbar-brand"><img src="assets\atomo (1).png" width="35px"></a> </h3>
+            <br>
+          </section>
+        <!-- Agregar los campos para ingresar los datos de la especialidad -->
+        <div class="form-group">
+          <label class="form-label">Nombre</label>
+          <input [(ngModel)]="especialidad.especialidad" name="especialidad" class="form-control" type="text">
+        </div>
+        <!-- Botón para registrar la especialidad -->
+        <div class="button-container">
+          <button type="submit" class="btn btn-primary">Registrar Especialidad</button>
+        </div>
+      </form>
+    </div>
+   
+ <!-- Lista de especialidades -->
+ <div class="container table-container">
+    <h4>Listado de Especialidades</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th> <!-- Agrega esta columna para mostrar el ID -->
+          <th>Especialidad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Usar *ngFor para iterar sobre la lista de especialidades y mostrar cada una -->
+        <tr *ngFor="let especialidad of especialidades">
+          <td>{{ especialidad.especialidad_id }}</td> <!-- Mostrar el ID -->
+          <td>{{ especialidad.especialidad }}</td>
+          <td>
+            <!-- Agregar botón de eliminar y llamar al método eliminarEspecialidad con el ID de la especialidad -->
+            <button class="btn btn-danger" (click)="eliminarEspecialidad(especialidad.especialidad_id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

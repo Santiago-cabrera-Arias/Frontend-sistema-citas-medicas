@@ -1,0 +1,50 @@
+.container_registro {
+    background-color: #fff;
+    padding: 35px;
+    border-radius: 20px;
+    width: 600px;
+  }
+  
+  .form_register {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .button-container button {
+    width: 100%;
+  }
+  
+  .container_register_main {
+    padding: 83.5px;
+    max-height: 100%;
+    background: #021B79;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #021B79, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0575E6, #021B79); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+  }
+
+  .container_seccion_login{
+
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .container-user{
+
+    border: gainsboro 1.5px solid;
+    padding: 18px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+  }
