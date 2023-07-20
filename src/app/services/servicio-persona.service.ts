@@ -13,5 +13,10 @@ export class ServicioPersonaService {
     return this.httpClient.post("http://localhost:8068/personas/registrar",persona);
   }
 
+  public obtenerPersonasMedicos(){
+    let url = "http://localhost:8068/personas/obtenerPersonas";
+    return this.httpClient.get<any>(url);     
+  }
+
 
 }

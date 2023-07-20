@@ -12,6 +12,8 @@ import { ServiciosComponent } from './components/servicios/servicios.component';
 import { CrearServicioComponent } from './components/crear-servicio/crear-servicio.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CitaComponent } from './components/cita/cita.component';
+import { MedicoComponent } from './components/medico/medico.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
     MainComponent,
     AboutComponent,
     ServiciosComponent,
-    CrearServicioComponent
+    CrearServicioComponent,
+    CitaComponent,
+    MedicoComponent
   ],
   imports: [
     BrowserModule,
