@@ -15,6 +15,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { CitaComponent } from './components/cita/cita.component';
 import { MedicoComponent } from './components/medico/medico.component';
 
+import { ClinicaComponent } from './components/clinica/clinica.component';
+
+import { FacturaComponent } from './components/factura/factura.component';
+import { EspecialidadesComponent } from './components/especialidades/especialidades.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,11 @@ import { MedicoComponent } from './components/medico/medico.component';
     ServiciosComponent,
     CrearServicioComponent,
     CitaComponent,
-    MedicoComponent
+    MedicoComponent,
+    ClinicaComponent,
+    EspecialidadesComponent,
+    FacturaComponent
+
   ],
   imports: [
     BrowserModule,
