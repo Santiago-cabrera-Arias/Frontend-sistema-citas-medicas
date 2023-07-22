@@ -18,4 +18,16 @@ export class MedicoService {
     return this.httpClient.post(url, medicoData);
   }
 
+
+  public obtenerMedicos() {
+    let url = 'http://localhost:8068/medicoControlador/obtenerMedicos'; 
+    return this.httpClient.get<any>(url);
+  }
+
+  public obtenerMedicoPorId(personaId: number) {
+    let url = `http://localhost:8068/medicoControlador/obtenerMedicoIdPorPersonaId/${personaId}`; 
+    return this.httpClient.get<any>(url);
+  }
+
+
 }

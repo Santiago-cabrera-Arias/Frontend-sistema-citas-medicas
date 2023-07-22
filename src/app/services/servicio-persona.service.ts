@@ -18,5 +18,10 @@ export class ServicioPersonaService {
     return this.httpClient.get<any>(url);     
   }
 
+  obtenerPersonasPacientes() {
+    let url = 'http://localhost:8068/personas/obtenerPersonas'; 
+    return this.httpClient.get<any>(url);
+  }
+
 
 }
