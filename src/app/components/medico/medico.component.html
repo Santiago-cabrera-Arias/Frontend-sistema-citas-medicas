@@ -1,0 +1,48 @@
+<div class="container_medico_main">
+    <div class="container container_registro">
+      <div class="container container_texto">
+        <section class="section_title">
+          <h3 style="display: flex; justify-content: space-between;">Agregar Medico <a href="#" class="navbar-brand"><img src="assets\atomo (1).png" width="35px"></a></h3>
+        </section>
+      </div>
+  
+      <br>
+  
+      <!-- Agregamos la referencia del formulario usando el nombre "medicoForm" -->
+      <form (ngSubmit)="form_register()" #medicoForm="ngForm">
+        <div class="form-group">
+          <label class="form-label">Teléfono consultorio</label>
+          <input name="telefono_consultorio" class="form-control" type="text" [(ngModel)]="medico.telenoConsultorio" required>
+        </div>
+  
+        <div class="form-group">
+          <label class="form-label">Médico</label>
+          <select name="medico" class="form-select" aria-label="Default select example" [(ngModel)]="medico.persona_id" required>
+            <option value="" disabled selected>Seleccione un médico</option>
+            <!-- Utiliza *ngFor para recorrer la lista de médicos y mostrarlos en el select -->
+            <option *ngFor="let medico of personasMedicos" [value]="medico.persona_id">
+              {{ medico.nombre }} {{ medico.apellido }}
+            </option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label class="form-label">Especialidad</label>
+          <select name="especialidad" class="form-select" aria-label="Default select example" [(ngModel)]="medico.especialidad_id" required>
+            <option value="" disabled selected>Seleccione una especialidad</option>
+            <!-- Utiliza *ngFor para recorrer la lista de especialidades y mostrarlas en el select -->
+            <option *ngFor="let especialidad of especialidades" [value]="especialidad.especialidad_id">
+              {{ especialidad.especialidad }}
+            </option>
+          </select>
+        </div>
+  
+     
+        <!-- Deshabilitar el botón cuando el formulario no es válido -->
+        <div class="button-container">
+          <button class="btn btn-primary" [disabled]="!medicoForm.form.valid">Agregar Médico</button>
+        </div>
+      </form>
+      <br>
+    </div>
+  </div>
