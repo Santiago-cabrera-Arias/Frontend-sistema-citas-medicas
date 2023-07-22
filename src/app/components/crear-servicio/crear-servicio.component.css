@@ -1,3 +1,8 @@
+.container_alert{
+  margin: 30px;
+  font-size: large;
+}
+
 .container_registro {
     background-color: #fff;
     padding: 35px;

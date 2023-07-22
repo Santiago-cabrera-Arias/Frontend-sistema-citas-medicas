@@ -36,7 +36,7 @@
                 <td>{{servicio.precio}}</td>
                 <td>{{servicio.cantidad}}</td>
                 <td>{{servicio.estado}}</td>
-                <td><button class="btn btn-danger">Eliminar</button></td>
+                <td><button class="btn btn-danger" (click)="eliminarServicio(servicio.servicio_id)" >Eliminar</button></td>
 
               </tr>
             </tbody>

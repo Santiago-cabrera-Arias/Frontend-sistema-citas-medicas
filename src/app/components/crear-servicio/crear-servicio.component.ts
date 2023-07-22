@@ -18,18 +18,21 @@ export class CrearServicioComponent {
     estado: ''
   }
 
+  public showAlert = false; 
+
   constructor(private servicios: ServiciosService, private router: Router) { }
 
   form_register(){
       this.servicios.crearServicio(this.servicio).subscribe(
         (data) => {
           console.log(data);  
-          //this.router.navigateByUrl('/lista-libros');
-          // this.showAlert = true; // Mostrar la alerta
+          this.showAlert = true; // Mostrar la alerta
         },(error) => {  
           console.log(error);
         })
   }
+
+
 
 
 }

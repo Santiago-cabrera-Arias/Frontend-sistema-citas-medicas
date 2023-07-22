@@ -25,9 +25,10 @@ export class ServiciosService {
     return this.httpClient.put<any>(url, servicio);
   }
 
+  public eliminarServicio(servicioId: number) {
+    let url = `http://localhost:8068/servicio/eliminarServicio/${servicioId}`;
+    return this.httpClient.delete<any>(url);
+  }
 
-
-  
-  
 
 }

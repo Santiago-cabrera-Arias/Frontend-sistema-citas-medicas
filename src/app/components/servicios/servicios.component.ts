@@ -27,7 +27,7 @@ export class ServiciosComponent implements OnInit {
     this.obtenerTodosLibros();
     this.obtenerEspecialidades();
     this.obtenerMedicos();
-    this.obtenerCitas();
+    this.obtenerServicios();
 
   }
 
@@ -43,7 +43,7 @@ export class ServiciosComponent implements OnInit {
     );
   }
 
-  obtenerCitas() {
+  obtenerServicios() {
     this.serviciosService.obtenerTodosServicios().subscribe(
       (res: any[]) => {
         this.servicios = res;
@@ -93,6 +93,18 @@ export class ServiciosComponent implements OnInit {
 
   mostrarCitas() {
     this.mostrarServiciosMedicos = 'citas';
+  }
+
+  eliminarServicio(servicioId: number) {
+    this.serviciosService.eliminarServicio(servicioId).subscribe(
+      () => {
+        console.log(`Servicio con ID ${servicioId} eliminada`);
+        this.obtenerServicios(); // Actualizar la lista de especialidades después de eliminar
+      },
+      (error) => {
+        console.error(`Error al eliminar especialidad con ID ${servicioId}`, error);
+      }
+    );
   }
 
 }
