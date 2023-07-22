@@ -1,0 +1,107 @@
+/* Estilos para el contenedor principal */
+.container_background {
+    padding: 30px;
+    background: #f0f2f5;
+    border-radius: 5px;
+    height: 100vh;
+  }
+  
+  /* Estilos para el contenedor de los botones */
+  .container_buttons {
+    display: flex;
+    flex-wrap: wrap;
+    width: 750px;
+    justify-content: center;
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    gap: 30px;
+  }
+  
+  /* Estilos para los botones de pestañas */
+  .tab-button {
+    background-color: transparent;
+    color: #4267b2;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    margin: 0 5px;
+    font-weight: bold;
+  }
+  
+  /* Estilos para el botón de pestañas activo */
+  .tab-button.active {
+    color: #1e3c78;
+  }
+  
+  /* Estilos para la línea debajo de los botones */
+  .line {
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+    margin: 10px 0;
+    border: none;
+  }
+
+  
+  /* Estilos para la fila de encabezado */
+  .table-custom thead tr th {
+    background-color: #f0f2f5;
+    color: #000;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  /* Estilos para filas */
+  .table-custom tbody tr {
+    transition: background-color 0.2s;
+  }
+  
+  /* Estilos para filas impares */
+  .table-custom tbody tr:nth-child(odd) {
+    background-color: #f5f7fa;
+  }
+  
+  /* Estilos para filas pares */
+  .table-custom tbody tr:nth-child(even) {
+    background-color: #e9ebf0;
+  }
+  
+  /* Estilos al pasar el cursor por una fila */
+  .table-custom tbody tr:hover {
+    background-color: #f0f2f5;
+  }
+  
+  /* Estilos para el contenido de las pestañas */
+  .tab-content {
+    padding: 40px;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .tab-button.active {
+    color: #1e3c78;
+    position: relative; /* Añadimos esta propiedad para que el ::after sea relativo al botón */
+  }
+  
+  /* Pseudoelemento para crear la línea debajo del botón activo */
+  .tab-button.active::after {
+    content: "";
+    position: absolute;
+    bottom: -2px; /* Desplazamos la línea debajo del botón */
+    left: 0;
+    width: 100%;
+    height: 2px; /* Altura de la línea */
+    background-color: #1e3c78; /* Color de la línea en el botón activo (más oscuro) */
+  }
+  
+
+  

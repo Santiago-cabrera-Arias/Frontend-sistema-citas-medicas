@@ -1,0 +1,119 @@
+
+
+<div class="container_background">
+  <br><br>
+
+  <div class="container container_main">
+
+    <div class="container_buttons">
+      <button class="tab-button" [class.active]="mostrarServiciosMedicos === 'servicios'" (click)="mostrarServicios()">Servicios</button>
+      <button class="tab-button" [class.active]="mostrarServiciosMedicos === 'medicos'" (click)="mostrarMedicos()">Médicos</button>
+      <button class="tab-button" [class.active]="mostrarServiciosMedicos === 'citas'" (click)="mostrarCitas()">Citas</button>
+      <button class="tab-button" [class.active]="mostrarServiciosMedicos === 'especialidades'" (click)="mostrarEspecialidades()">Especialidades</button>
+      <!-- Agrega aquí los otros botones -->
+    </div>
+
+    <br>
+
+    <div class="tab-content">
+
+      <!-- Mostrar la lista de servicios -->
+      <div *ngIf="mostrarServiciosMedicos === 'servicios' && servicios.length > 0">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Nombre del Servicio</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let servicio of servicios">
+                <td>{{servicio.nombreServicio}}</td>
+                <td>{{servicio.precio}}</td>
+                <td>{{servicio.cantidad}}</td>
+                <td>{{servicio.estado}}</td>
+                <td><button class="btn btn-danger">Eliminar</button></td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Mostrar la lista de médicos -->
+      <div *ngIf="mostrarServiciosMedicos === 'medicos' && medicos.length > 0">
+        <div class="table-responsive">
+          <table class="table table-custom">
+            <thead>
+              <tr>
+                <th scope="col">Medico ID</th>
+                <th scope="col">Teléfono Consultorio</th>
+                <th scope="col">Persona ID</th>
+                <th scope="col">Especialidad ID</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let medico of medicos">
+                <td>{{medico.medico_id}}</td>
+                <td>{{medico.telenoConsultorio}}</td>
+                <td>{{medico.persona_id}}</td>
+                <td>{{medico.especialidad.especialidad}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Mostrar la lista de especialidades -->
+      <div *ngIf="mostrarServiciosMedicos === 'especialidades' && especialidades.length > 0">
+        <div class="table-responsive">
+          <table class="table table-custom">
+            <thead>
+              <tr>
+                <th scope="col">Especialidad ID</th>
+                <th scope="col">Especialidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let especialidad of especialidades">
+                <td>{{especialidad.especialidad_id}}</td>
+                <td>{{especialidad.especialidad}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <!-- Mostrar la lista de citas -->
+      <div *ngIf="mostrarServiciosMedicos === 'citas' && citas.length > 0">
+        <div class="table-responsive">
+          <table class="table table-custom">
+            <thead>
+              <tr>
+                <th scope="col">Fecha Cita</th>
+                <th scope="col">Hora</th>
+
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cita of citas">
+                <td>{{cita.fechaCita}}</td>
+                <td>{{cita.hora}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+  
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,39 @@
+.container_registro {
+    background-color: #fff;
+    padding: 35px;
+    border-radius: 20px;
+    width: 600px;
+  }
+  
+  .form_register {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .button-container button {
+    width: 100%;
+  }
+  
+  .container_medico_main {
+    padding: 203.9px;
+    background: #021B79;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #021B79, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0575E6, #021B79); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+  }
+
+  .container_seccion_registrarse{
+    display: flex;
+    justify-content: center;
+  }
+
