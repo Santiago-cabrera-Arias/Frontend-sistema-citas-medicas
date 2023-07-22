@@ -6,11 +6,10 @@
     height: 100vh;
   }
   
-  /* Estilos para el contenedor de los botones */
   .container_buttons {
     display: flex;
     flex-wrap: wrap;
-    width: 750px;
+    max-width: 750px; /* Ancho máximo del contenedor */
     justify-content: center;
     background-color: #fff;
     padding: 10px;
