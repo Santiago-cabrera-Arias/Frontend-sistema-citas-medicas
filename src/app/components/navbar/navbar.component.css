@@ -1,0 +1,33 @@
+/* Estilos para el contenedor de la barra de navegación */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+/* Estilos para el grupo de elementos de navegación */
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.navbar-brand{
+  font-size: 14px;
+}
+
+/* Estilos para cada elemento de navegación */
+.navbar-nav li {
+  margin-left: 13px;
+}
+
+/* Estilos para alinear los elementos a la derecha */
+.navbar-nav.right {
+  margin-left: auto;
+
+}

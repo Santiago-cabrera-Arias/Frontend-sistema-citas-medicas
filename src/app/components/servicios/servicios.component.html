@@ -1,0 +1,369 @@
+<div class="container_background">
+  <br><br>
+
+  <div class="container container_main">
+
+    <div class="container_buttons">
+      <button class="tab-button" [class.active]="mostrarServiciosMedicos === 'servicios'" (click)="mostrarServicios()">Servicios</button>
+      <button class="tab-button" [class.active]="mostrarServiciosMedicos === 'medicos'" (click)="mostrarMedicos()">Médicos</button>
+      <button class="tab-button" [class.active]="mostrarServiciosMedicos === 'citas'" (click)="mostrarCitas()">Citas</button>
+      <button class="tab-button" [class.active]="mostrarServiciosMedicos === 'especialidades'" (click)="mostrarEspecialidades()">Especialidades</button>
+      <button class="tab-button" [class.active]="mostrarServiciosMedicos === 'personas'" (click)="mostrarPersonas()">Personas</button>
+      <button class="tab-button" [class.active]="mostrarServiciosMedicos === 'facturas'" (click)="mostrarFacturas()">Facturas</button>
+      <button class="tab-button" [class.active]="mostrarServiciosMedicos === 'historial'" (click)="mostrarHistorialClinico()">Historial Clinico</button>
+      <!-- Agrega aquí los otros botones -->
+    </div>
+
+    <br>
+
+    <div class="tab-content">
+
+      <!-- Mostrar la lista de Historial Clinico -->
+      <div *ngIf="mostrarServiciosMedicos === 'historial' && historial.length > 0">
+        <div class="table-responsive">
+          <table class="table table-custom">
+            <thead>
+              <tr>
+                <th scope="col">Clinica ID</th>
+                <th scope="col">Certificado</th>
+                <th scope="col">Ordenes</th>
+                <th scope="col">Prescripciones</th>
+                <th scope="col">Medico ID</th>
+                <th scope="col">Persona Id</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let historial of historial; let i=index">
+                <td>{{historial.clinica_id}}</td>
+
+                <!-- Editable column: Certificado -->
+                <td>
+                  <ng-container *ngIf="editandoHistoriales[i]; else displayCertificado">
+                    <input type="text" [(ngModel)]="historial.certificados">
+                  </ng-container>
+                  <ng-template #displayCertificado>
+                    {{historial.certificados}}
+                  </ng-template>
+                </td>
+
+                
+
+                <!-- Editable column: Ordenes -->
+                <td>
+                  <ng-container *ngIf="editandoHistoriales[i]; else displayOrden">
+                    <input type="text" [(ngModel)]="historial.ordenes">
+                  </ng-container>
+                  <ng-template #displayOrden>
+                    {{historial.ordenes}}
+                  </ng-template>
+                </td>
+
+                <!-- Editable column: prescripciones -->
+                <td>
+                  <ng-container *ngIf="editandoHistoriales[i]; else displayPrescripcion">
+                    <input type="text" [(ngModel)]="historial.prescripciones">
+                  </ng-container>
+                  <ng-template #displayPrescripcion>
+                    {{historial.prescripciones}}
+                  </ng-template>
+                </td>
+                <td>{{historial.medico.medico_id}}</td>
+                <td>{{historial.persona.persona_id}}</td>
+
+                <td><button class="btn btn-danger" (click)="eliminarHistorial(historial.clinica_id)" >Eliminar</button>
+                
+                  <!-- Toggle edit mode -->
+                  <ng-container *ngIf="!editandoHistoriales[i]; else displayEditButton">
+                    <button class="btn btn-primary" (click)="iniciarEdicionHistorial(i)">Editar</button>
+                  </ng-container>
+                  <ng-template #displayEditButton>
+                    <button class="btn btn-success" (click)="guardarCambiosHistorial(i)">Guardar</button>
+                  </ng-template>
+                </td>
+                
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <!-- Mostrar la lista de especialidades -->
+      <div *ngIf="mostrarServiciosMedicos === 'especialidades' && especialidades.length > 0">
+        <div class="table-responsive">
+          <table class="table table-custom">
+            <thead>
+              <tr>
+                <th scope="col">Especialidad ID</th>
+                <th scope="col">Especialidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let especialidad of especialidades; let i=index">
+                <td>{{especialidad.especialidad_id}}</td>
+                <!-- Editable column: Nombre -->
+                <td>
+                  <ng-container *ngIf="editandoEspecialidades[i]; else displayNombre">
+                    <input type="text" [(ngModel)]="especialidad.especialidad">
+                  </ng-container>
+                  <ng-template #displayNombre>
+                    {{especialidad.especialidad}}
+                  </ng-template>
+                </td>
+                <td><button class="btn btn-danger" (click)="eliminarEspecialidad(especialidad.especialidad_id)" >Eliminar</button>
+                
+                  <!-- Toggle edit mode -->
+                  <ng-container *ngIf="!editandoEspecialidades[i]; else displayEditButton">
+                    <button class="btn btn-primary" (click)="iniciarEdicionEspecialidad(i)">Editar</button>
+                  </ng-container>
+                  <ng-template #displayEditButton>
+                    <button class="btn btn-success" (click)="guardarCambiosEspecialidad(i)">Guardar</button>
+                  </ng-template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+
+      <div *ngIf="mostrarServiciosMedicos === 'personas' && personas.length > 0">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">Cedula</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Direccion</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Email</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Fecha de nacimiento</th>
+                <th scope="col">Sexo</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let persona of personas; let i = index">
+                <td>{{persona.persona_id}}</td>
+                <td>{{persona.cedula}}</td>
+      
+                <!-- Editable column: Nombre -->
+                <td>
+                  <ng-container *ngIf="editandoPersonas[i]; else displayNombre">
+                    <input type="text" [(ngModel)]="persona.nombre">
+                  </ng-container>
+                  <ng-template #displayNombre>
+                    {{persona.nombre}}
+                  </ng-template>
+                </td>
+      
+                <!-- Editable column: Apellido -->
+                <td>
+                  <ng-container *ngIf="editandoPersonas[i]; else displayApellido">
+                    <input type="text" [(ngModel)]="persona.apellido">
+                  </ng-container>
+                  <ng-template #displayApellido>
+                    {{persona.apellido}}
+                  </ng-template>
+                </td>
+      
+                <!-- Editable column: Direccion -->
+                <td>
+                  <ng-container *ngIf="editandoPersonas[i]; else displayDireccion">
+                    <input type="text" [(ngModel)]="persona.direccion">
+                  </ng-container>
+                  <ng-template #displayDireccion>
+                    {{persona.direccion}}
+                  </ng-template>
+                </td>
+
+                <!-- Editable column: Telefono -->
+                <td>
+                  <ng-container *ngIf="editandoPersonas[i]; else displayTelefono">
+                    <input type="text" [(ngModel)]="persona.telefono">
+                  </ng-container>
+                  <ng-template #displayTelefono>
+                    {{persona.telefono}}
+                  </ng-template>
+                </td>
+
+                <!-- Editable column: Correo -->
+                <td>
+                  <ng-container *ngIf="editandoPersonas[i]; else displayCorreo">
+                    <input type="text" [(ngModel)]="persona.correo">
+                  </ng-container>
+                  <ng-template #displayCorreo>
+                    {{persona.correo}}
+                  </ng-template>
+                </td>
+                <td>{{persona.estado}}</td>
+                <td>{{persona.fechaNacimiento}}</td>
+                <td>{{persona.sexo}}</td>
+                <td>{{persona.tipo}}</td>
+                <td>
+                  <button class="btn btn-danger" (click)="eliminarPersona(persona.persona_id)">Eliminar</button>
+      
+                  <!-- Toggle edit mode -->
+                  <ng-container *ngIf="!editandoPersonas[i]; else displayEditButton">
+                    <button class="btn btn-primary" (click)="iniciarEdicion(i)">Editar</button>
+                  </ng-container>
+                  <ng-template #displayEditButton>
+                    <button class="btn btn-success" (click)="guardarCambios(i)">Guardar</button>
+                  </ng-template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+
+      <!-- Mostrar la lista de facturas -->
+<div *ngIf="mostrarServiciosMedicos === 'facturas' && facturas.length > 0">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Subtotal</th>
+          <th scope="col">Total IVA</th>
+          <th scope="col">Total Factura</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Detalle Id</th>
+          <th scope="col">Servicio</th>
+          <th scope="col">cantidad</th>
+          <th scope="col">Precio unitario</th>
+          <th scope="col">Total</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Nombre servicio</th>
+          <th scope="col">Precio servicio</th>
+          <th scope="col">Cantidad servicio</th>
+          <th scope="col">Estado servicio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let factura of facturas">
+          <td>{{ factura.cabeceraFactura_id }}</td>
+          <td>{{ factura.fecha }}</td>
+          <td>{{ factura.subtotal }}</td>
+          <td>{{ factura.totalIva }}</td>
+          <td>{{ factura.totalFactura }}</td>
+          <td>{{ factura.estado }}</td>
+          <!-- Agregar el ngFor anidado para recorrer los detalles de factura -->
+          <ng-container *ngFor="let detalle of factura.detallesFacturas">
+            <td>{{ detalle.detalleFactura_id }}</td>
+            <td>{{ detalle.nombre }}</td>
+            <td>{{ detalle.cantidad }}</td>
+            <td>{{ detalle.precioUnitario }}</td>
+            <td>{{ detalle.total }}</td>
+            <td>{{ detalle.servicio.precio }}</td>
+            <!-- Acceder a los datos del servicio asociado -->
+            <td>{{ detalle.servicio.nombreServicio }}</td>
+            <td>{{ detalle.servicio.precio }}</td>
+            <td>{{ detalle.servicio.cantidad }}</td>
+            <td>{{ detalle.servicio.estado }}</td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+      <!-- Mostrar la lista de servicios -->
+      <div *ngIf="mostrarServiciosMedicos === 'servicios' && servicios.length > 0">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Nombre del Servicio</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Opciones</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let servicio of servicios">
+                <td>{{servicio.nombreServicio}}</td>
+                <td>{{servicio.precio}}</td>
+                <td>{{servicio.cantidad}}</td>
+                <td>{{servicio.estado}}</td>
+
+                <td><button class="btn btn-danger" (click)="eliminarServicio(servicio.servicio_id)" >Eliminar</button></td>
+                <td><button class="btn btn-danger" >Editar</button></td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Mostrar la lista de médicos -->
+      <div *ngIf="mostrarServiciosMedicos === 'medicos' && medicos.length > 0">
+        <div class="table-responsive">
+          <table class="table table-custom">
+            <thead>
+              <tr>
+                <th scope="col">Medico ID</th>
+                <th scope="col">Teléfono Consultorio</th>
+                <th scope="col">Persona ID</th>
+                <th scope="col">Especialidad ID</th>
+                <th scope="col">Opciones</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let medico of medicos">
+                <td>{{medico.medico_id}}</td>
+                <td>{{medico.telenoConsultorio}}</td>
+                <td>{{medico.persona}}</td>
+                <td>{{medico.especialidad.especialidad}}</td>
+                <td><button class="btn btn-danger" (click)="eliminarMedico(medico.persona_id)" >Eliminar</button></td>
+                <td><button class="btn btn-danger" >Editar</button></td>
+                   <!-- Agregar el ngFor anidado para recorrer los detalles de factura -->
+                <ng-container *ngFor="let detalle of medico.persona">
+                  <td>{{ detalle.persona_id}}</td>
+                </ng-container>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      
+      <!-- Mostrar la lista de citas -->
+      <div *ngIf="mostrarServiciosMedicos === 'citas' && citas.length > 0">
+        <div class="table-responsive">
+          <table class="table table-custom">
+            <thead>
+              <tr>
+                <th scope="col">Fecha Cita</th>
+                <th scope="col">Hora</th>
+                <th scope="col">Opciones</th>
+                <th scope="col"></th>
+
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cita of citas">
+                <td>{{cita.fechaCita}}</td>
+                <td>{{cita.hora}}</td>
+                <td><button class="btn btn-danger" >Eliminar</button></td>
+                <td><button class="btn btn-danger" >Editar</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
